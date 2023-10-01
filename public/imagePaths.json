@@ -3,12 +3,13 @@
         {
           "neighborhood": "롯데월드",
           "imagePath": "img/Seoul/2.jpg",
-          "imagePath2" :"img/Seoul/2.jpg"
+          "imagePath2" :"img/Seoul/1.jpg"
           
         },
         {
             "neighborhood": "성수동",
-            "imagePath": "img/Seoul/2.png"
+            "imagePath": "img/Seoul/2.png",
+            "imagePath2": "img/Seoul/2.jpg"
           }
     ]   ,
 

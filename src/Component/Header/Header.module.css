@@ -5,6 +5,7 @@
 }
 
 .ImgBox{
+    position: relative;
     padding: 10px;
     width: 80%;
     border: 3px solid #000;
@@ -16,4 +17,9 @@
     object-fit: contain;
     width: 100%;
 
+}
+
+.NextBtn{
+    position: absolute;
+    right: 5%;
 }
