@@ -1,0 +1,19 @@
+.Header{
+    width: 100%;
+    height: 100vh;
+    float: left;
+}
+
+.ImgBox{
+    padding: 10px;
+    width: 80%;
+    border: 3px solid #000;
+    height: auto;
+    margin-left: 10%;
+
+}
+.ImgBox img{
+    object-fit: contain;
+    width: 100%;
+
+}

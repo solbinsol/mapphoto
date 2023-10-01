@@ -1,0 +1,17 @@
+{
+    "Seoul": [
+        {
+          "neighborhood": "롯데월드",
+          "imagePath": "img/Seoul/2.jpg",
+          "imagePath2" :"img/Seoul/2.jpg"
+          
+        },
+        {
+            "neighborhood": "성수동",
+            "imagePath": "img/Seoul/2.png"
+          }
+    ]   ,
+
+    "Busan": ["img/Seoul/1.png", "4.png"]
+}
+  

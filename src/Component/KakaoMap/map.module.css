@@ -1,0 +1,18 @@
+.Map{
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    right: 0;
+    width: 60%;
+    height: 100vh;
+}
+.LeftHeader{
+    width: 40%;
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    left:0;
+    height: 100vh;
+}
