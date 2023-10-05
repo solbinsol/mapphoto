@@ -1,18 +1,26 @@
 {
     "Seoul": [
         {
+          "date": "2023-09-29",
           "neighborhood": "롯데월드",
-          "imagePath": "img/Seoul/2.jpg",
-          "imagePath2" :"img/Seoul/1.jpg"
+          "imagePath": "img/Seoul/1.jpg",
+          "imagePath2" :"img/Seoul/2.jpg"
           
         },
         {
+            "date": "2023-09-29",
             "neighborhood": "성수동",
             "imagePath": "img/Seoul/2.png",
             "imagePath2": "img/Seoul/2.jpg"
           }
     ]   ,
 
-    "Busan": ["img/Seoul/1.png", "4.png"]
+    "Busan": [
+      {
+        "neighborhood": "성수동",
+        "imagePath":"img/Seoul/1.png", 
+        "imagePath2":"img/Seoul/2.png"
+     }
+    ]
 }
   
