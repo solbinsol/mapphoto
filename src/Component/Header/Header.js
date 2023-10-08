@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from 'next/router';
 
 
-const Header = ({ imageFiles,onAreaClick,CCG,CCGS,CCGJ}) => {
+const Header = ({ imageFiles,onAreaClick,CCG,CCGS,CCGJ,reset}) => {
   const router = useRouter();
   const [seoulClicked, setSeoulClicked] = useState(false); // State to track if "서울" is clicked
 
@@ -111,6 +111,7 @@ const toggleGuideVisibility = () => {
                 </video>
               )}
               <p className={style.Guide}  onClick={toggleGuideVisibility}>Guide</p>
+              <p className={style.reset} onClick={reset}>reset</p>
             </div>
           </div>
 

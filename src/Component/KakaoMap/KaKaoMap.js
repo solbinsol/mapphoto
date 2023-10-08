@@ -108,7 +108,15 @@ export default function Map({ latitude, longitude }) {
               //console.log(polygon);
 
 
-              
+              kakao.maps.event.addListener(map, 'zoom_changed', function() {
+                const currentLevel = map.getLevel();
+                if (currentLevel > 13) {
+                  window.alert("최대 축소 상태입니다");
+                  map.setLevel(13); // 레벨이 13보다 작으면 13으로 다시 설정
+                  map.setCenter(new window.kakao.maps.LatLng(36.64150149957468, 128.02268619719845));
+
+                }
+              });
 
 
               // 폴리곤에 클릭 이벤트 핸들러 추가
@@ -172,6 +180,17 @@ export default function Map({ latitude, longitude }) {
       }
     });
   };
+
+  const reset = () => {
+    if (map) {
+      // 초기 좌표로 이동
+      map.setCenter(new window.kakao.maps.LatLng(36.64150149957468, 128.02268619719845));
+      map.setLevel(13);
+    }
+  };
+  
+
+
   const CCGS = () => {
     console.log("Ss");
     // 변경할 폴리곤의 ctpEngNm 값을 설정
@@ -343,7 +362,8 @@ const handleAreaClick = (areaName) => {
           {/* 이미지 파일 목록을 헤더 컴포넌트로 전달 */}
           <Header imageFiles={imageFiles} selectedArea={selectedArea}  onAreaClick={handleAreaClick} CCG={CCG}
            CCGS={CCGS}
-           CCGJ={CCGJ}/>
+           CCGJ={CCGJ}
+           reset={reset}/>
         </div>
         <div id="map" className={style.Map}></div>
         <div></div>

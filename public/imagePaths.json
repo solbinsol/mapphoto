@@ -28,6 +28,22 @@
       "imagePath2":"img/Busan/4.jpg", 
       "imagePath":"img/Busan/3.jpg"
     }
+    ],
+    "Jeju-do": [
+      {
+        "date": "2023-09-29",
+        "neighborhood": "롯데월드",
+        "imagePath": "img/Jeju-do/1.jpg",
+        "imagePath2" :"img/Jeju-do/2.jpg"
+        
+      },
+      {
+          "date": "2023-09-29",
+          "neighborhood": "성수동  cafe roop",
+          "imagePath": "img/Jeju-do/3.jpg",
+          "imagePath2": "img/Jeju-do/4.jpg"
+        }
+
     ]
 }
   
