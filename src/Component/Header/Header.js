@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from 'next/router';
 
 
-const Header = ({ imageFiles,onAreaClick  }) => {
+const Header = ({ imageFiles,onAreaClick,CCG  }) => {
   const router = useRouter();
   const [seoulClicked, setSeoulClicked] = useState(false); // State to track if "서울" is clicked
 
@@ -96,13 +96,10 @@ const handleLogoClick = () => {
         </h1>      </div>
       {!imagesLoaded && (
         <div className={style.MainHeader}>
-<h1
-  style={{ color: seoulClicked ? 'red' : 'black' }}
-  onClick={handleSeoulClick}
->
+          <h1 >
             서울
           </h1>
-          <h1>부산</h1>
+          <h1 onClick={CCG}>부산</h1>
         </div>
       )}
       {imageFiles.map((item, index) => (

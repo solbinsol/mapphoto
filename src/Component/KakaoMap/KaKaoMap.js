@@ -8,6 +8,7 @@ export default function Map({ latitude, longitude }) {
   const apiKey = "a32953360d2d9f9db8455072180a1a51";
 
   const [polygon, setPolygon] = useState(); // 폴리곤 객체 상태 추가
+  const [features, setFeatures] = useState([]); // 폴리곤 데이터를 상태로 관리
 
   const [selectedArea, setSelectedArea] = useState(null);
   const [imageFiles, setImageFiles] = useState([]);
@@ -15,7 +16,6 @@ export default function Map({ latitude, longitude }) {
     imageFiles.length > 0 ? Array.from({ length: imageFiles.length }, () => 0) : []
   );
 
-  const [features, setFeatures] = useState([]); // 폴리곤 데이터를 상태로 관리
 
   const seoulTextRef = useRef(null); // 서울 텍스트 엘리먼트의 ref
 
@@ -45,6 +45,7 @@ export default function Map({ latitude, longitude }) {
           .then(response => response.json())
           .then(data => {
             const features = data.features;
+            setFeatures(features); // features를 설정
 
             // 각 지역의 폴리곤을 생성 및 이벤트 핸들러 추가
             features.forEach(feature => {
@@ -59,6 +60,8 @@ export default function Map({ latitude, longitude }) {
                 fillColor: feature.properties.CTP_ENG_NM === "Seoul" ? "#FF0000" : "#A2FF99", // Change fillColor to red for Seoul
                 fillOpacity: 0.5
               });
+
+              feature.polygon = polygon;
               polygon.ctpEngNm = feature.properties.CTP_ENG_NM;
 
               polygon.setMap(map);
@@ -108,29 +111,26 @@ export default function Map({ latitude, longitude }) {
 
 
   }, []);
+
+
   const CCG = () => {
     console.log("Ss");
-  
     // 변경할 폴리곤의 ctpEngNm 값을 설정
     const targetCtpEngNm = "Busan";
-  
+
     // 모든 폴리곤을 순회하며 Busan인 경우에만 색상을 변경
     features.forEach(feature => {
       const properties = feature.properties;
       console.log("sssss");
       if (properties.CTP_ENG_NM === targetCtpEngNm) {
         console.log("포문" + properties.CTP_ENG_NM);
-  
-        // 폴리곤의 fillColor를 변경하려면 해당 폴리곤 객체에 접근해야 합니다.
-        // 현재 코드에서는 폴리곤 객체가 어떤 변수에 저장되는지 확인이 필요합니다.
-        // 아래 예시에서는 feature.polygon으로 가정하겠습니다.
-  
-        const polygonToChange = feature;
-  
-        // 폴리곤 객체의 fillColor를 변경
+
+        // 폴리곤의 fillColor를 변경
+        const polygonToChange = feature.polygon; // 폴리곤 객체에 접근
         polygonToChange.setOptions({
           fillColor: "pink"
         });
+
       }
     });
   };
@@ -229,7 +229,7 @@ const handleAreaClick = (areaName) => {
       <div>
         <div className={style.LeftHeader}>
           {/* 이미지 파일 목록을 헤더 컴포넌트로 전달 */}
-          <Header imageFiles={imageFiles} selectedArea={selectedArea}  onAreaClick={handleAreaClick} />
+          <Header imageFiles={imageFiles} selectedArea={selectedArea}  onAreaClick={handleAreaClick} CCG={CCG}/>
         </div>
         <div id="map" className={style.Map}></div>
         <div></div>
