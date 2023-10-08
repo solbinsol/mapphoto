@@ -1,5 +1,14 @@
+
+
+@media screen and (max-width:1000px) {
+    .Map{
+        width: 60% !important;
+    }    
+}
 .Map{
     position: absolute;
+    border: 5px solid black; /* 내부에 빨간색 보더를 추가합니다. */
+    box-sizing: border-box; /* 요소의 크기에 보더를 포함시킵니다. */
     top: 0;
     margin: 0;
     padding: 0;

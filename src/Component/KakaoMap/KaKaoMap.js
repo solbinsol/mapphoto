@@ -10,6 +10,11 @@ export default function Map({ latitude, longitude }) {
   const [polygon, setPolygon] = useState(); // 폴리곤 객체 상태 추가
   const [features, setFeatures] = useState([]); // 폴리곤 데이터를 상태로 관리
 
+
+
+  const [map, setMap] = useState(null); // 맵 상태 추가
+
+
   const [selectedArea, setSelectedArea] = useState(null);
   const [imageFiles, setImageFiles] = useState([]);
   const [currentImageIndices, setCurrentImageIndices] = useState(
@@ -35,11 +40,15 @@ export default function Map({ latitude, longitude }) {
       window.kakao.maps.load(() => {
         const container = document.getElementById("map");
         const options = {
-          center: new window.kakao.maps.LatLng(37.775730012459356, 127.63130734257706),
-          level: 20,
+          center: new window.kakao.maps.LatLng(36.64150149957468 ,  128.02268619719845 ),
+          level: 13,
         };
         const map = new window.kakao.maps.Map(container, options);
 
+
+
+        const newMap = map;
+        setMap(newMap); // 맵 상태 설정
         // JSON 파일을 읽어와 폴리곤 생성
         fetch('/sido.json')
           .then(response => response.json())
@@ -55,7 +64,8 @@ export default function Map({ latitude, longitude }) {
               var polygon = new window.kakao.maps.Polygon({
                 path: polygonPath,
                 strokeWeight: 1,
-                strokeColor: '#39DE2A',
+                zIndex:0,
+                strokeColor: feature.properties.CTP_ENG_NM === "Seoul" ? "black" : '#39DE2A',
                 strokeOpacity: 0.8,
                 fillColor: feature.properties.CTP_ENG_NM === "Seoul" ? "#FF0000" : "#A2FF99", // Change fillColor to red for Seoul
                 fillOpacity: 0.5
@@ -75,17 +85,26 @@ export default function Map({ latitude, longitude }) {
 
                 // fillColor를 블랙으로 변경
                 polygon.setOptions({
-                  fillColor: '#000000',
+                  strokeWeight:2,
+                  strokeColor: '#000000',
+                  zIndex: 5, // 스트로크의 zIndex를 설정
+
                 });
               });
 
-              window.kakao.maps.event.addListener(polygon, 'mouseout', function() {
-                // 폴리곤 위에서 마우스가 벗어났을 때 처리할 코드
-                // fillColor를 원래대로 돌리는 코드
-                polygon.setOptions({
-                  fillColor: feature.properties.CTP_ENG_NM === "Seoul" ? "#FF0000" : "#A2FF99", // Change fillColor to red for Seoul
-                });
-              });
+
+              const mouseoutHandler = function () {
+                const properties = feature.properties;
+
+                  polygon.setOptions({
+                    strokeWeight: 1,
+                    strokeColor: '#39DE2A',
+                  });
+              };
+              
+
+              window.kakao.maps.event.addListener(polygon, 'mouseout', mouseoutHandler);
+
               //console.log(polygon);
 
 
@@ -109,36 +128,129 @@ export default function Map({ latitude, longitude }) {
       });
     });
 
+ 
+  
 
   }, []);
-
 
   const CCG = () => {
     console.log("Ss");
     // 변경할 폴리곤의 ctpEngNm 값을 설정
-    const targetCtpEngNm = "Busan";
-
+    const targetCtpEngNm = "busan"; // 대소문자 주의!
+    
     // 모든 폴리곤을 순회하며 Busan인 경우에만 색상을 변경
     features.forEach(feature => {
       const properties = feature.properties;
       console.log("sssss");
-      if (properties.CTP_ENG_NM === targetCtpEngNm) {
+      if (properties.CTP_ENG_NM.toLowerCase() === targetCtpEngNm) { // 대소문자 구분
         console.log("포문" + properties.CTP_ENG_NM);
-
+    
         // 폴리곤의 fillColor를 변경
         const polygonToChange = feature.polygon; // 폴리곤 객체에 접근
         polygonToChange.setOptions({
-          fillColor: "pink"
+          fillColor: "pink",
+          strokeOpacity: 1,
+          zIndex: 20,
+          fillOpacity: 0.5,
+          strokeColor: "black",
+          strokeWeight: 3,
         });
-
+    
+        // 마우스 오버 및 마우스 아웃 이벤트 핸들러 제거
+        kakao.maps.event.removeListener(polygonToChange, 'mouseover');
+        kakao.maps.event.removeListener(polygonToChange, 'mouseout');
+  
+        console.log("이벤트 핸들러 제거됨"); // 확인을 위해 이 메시지를 추가
+        
+        if (map) {
+          // 맵의 중심 좌표를 변경
+          console.log("test")
+          const targetLatLng = new kakao.maps.LatLng(35.2149682996739 ,  129.13233889499637 ); // 원하는 좌표로 설정
+          map.setCenter(targetLatLng); // map은 지도 객체입니다.
+          map.setLevel(11);
+        }
       }
     });
   };
+  const CCGS = () => {
+    console.log("Ss");
+    // 변경할 폴리곤의 ctpEngNm 값을 설정
+    const targetCtpEngNm = "seoul"; // 대소문자 주의!
+    
+    // 모든 폴리곤을 순회하며 Busan인 경우에만 색상을 변경
+    features.forEach(feature => {
+      const properties = feature.properties;
+      console.log("sssss");
+      if (properties.CTP_ENG_NM.toLowerCase() === targetCtpEngNm) { // 대소문자 구분
+        console.log("포문" + properties.CTP_ENG_NM);
+    
+        // 폴리곤의 fillColor를 변경
+        const polygonToChange = feature.polygon; // 폴리곤 객체에 접근
+        polygonToChange.setOptions({
+          fillColor: "#ff0000",
+          strokeOpacity: 1,
+          zIndex: 20,
+          fillOpacity: 0.5,
+          strokeColor: "pink",
+          strokeWeight: 3,
+        });
+    
+        // 마우스 오버 및 마우스 아웃 이벤트 핸들러 제거
+        kakao.maps.event.removeListener(polygonToChange, 'mouseover');
+        kakao.maps.event.removeListener(polygonToChange, 'mouseout');
   
+        console.log("이벤트 핸들러 제거됨"); // 확인을 위해 이 메시지를 추가
+        
+        if (map) {
+          // 맵의 중심 좌표를 변경
+          console.log("test")
+          const targetLatLng = new kakao.maps.LatLng( 37.568437387277555 ,  126.98100621300533 ); // 원하는 좌표로 설정
+          map.setCenter(targetLatLng); // map은 지도 객체입니다.
+          map.setLevel(11);
+        }
+      }
+    });
+  };
+
+  const CCGJ = () => {
+    console.log("Ss");
+    // 변경할 폴리곤의 ctpEngNm 값을 설정
+    const targetCtpEngNm = "jeju-do"; // 대소문자 주의!
+    
+    // 모든 폴리곤을 순회하며 Busan인 경우에만 색상을 변경
+    features.forEach(feature => {
+      const properties = feature.properties;
+      console.log("sssss");
+      if (properties.CTP_ENG_NM.toLowerCase() === targetCtpEngNm) { // 대소문자 구분
+        console.log("포문" + properties.CTP_ENG_NM);
+    
+        // 폴리곤의 fillColor를 변경
+        const polygonToChange = feature.polygon; // 폴리곤 객체에 접근
+        polygonToChange.setOptions({
+          fillColor: "orange",
+          strokeOpacity: 1,
+          zIndex: 20,
+          fillOpacity: 0.5,
+          strokeColor: "red",
+          strokeWeight: 2,
+        });
+    
+        // 마우스 오버 및 마우스 아웃 이벤트 핸들러 제거
+        kakao.maps.event.removeListener(polygonToChange, 'mouseover');
+        kakao.maps.event.removeListener(polygonToChange, 'mouseout');
   
-  
-  
-  
+        console.log("이벤트 핸들러 제거됨"); // 확인을 위해 이 메시지를 추가
+        
+        if (map) {
+          // 맵의 중심 좌표를 변경
+          console.log("test")
+          const targetLatLng = new kakao.maps.LatLng(  33.38514787749952 ,  126.56118210791432 ); // 원하는 좌표로 설정
+          map.setCenter(targetLatLng); // map은 지도 객체입니다.
+          map.setLevel(11);
+        }
+      }
+    });
+  };
 
   /*
   const CCG = () => {
@@ -229,11 +341,13 @@ const handleAreaClick = (areaName) => {
       <div>
         <div className={style.LeftHeader}>
           {/* 이미지 파일 목록을 헤더 컴포넌트로 전달 */}
-          <Header imageFiles={imageFiles} selectedArea={selectedArea}  onAreaClick={handleAreaClick} CCG={CCG}/>
+          <Header imageFiles={imageFiles} selectedArea={selectedArea}  onAreaClick={handleAreaClick} CCG={CCG}
+           CCGS={CCGS}
+           CCGJ={CCGJ}/>
         </div>
         <div id="map" className={style.Map}></div>
         <div></div>
-        <button className={style.BBB} onClick={CCG}>sdsds</button>
+
 
       </div>
     </>

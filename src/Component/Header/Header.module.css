@@ -1,16 +1,66 @@
+@font-face {
+    font-family: 'intelone-mono-font-family-regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/intelone-mono-font-family-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SKYBORI';
+    src: url('/font/SKYBORI.ttf') format('truetype');
+    /* 원하는 다른 폰트 설정도 추가할 수 있습니다. */
+  }
+
+
+@media screen and (max-width:1000px){
+    .ImgBox{
+        width: 80% !important;
+    }
+}
+  
 .Header{
     width: 100%;
     height: 100vh;
     float: left;
-
-    
-    background-color: rgba(10,10,10,0.2);
+    border: 5px solid black; /* 내부에 빨간색 보더를 추가합니다. */
+    box-sizing: border-box; /* 요소의 크기에 보더를 포함시킵니다. */
+    overflow: auto;
+    background-color: rgba(10,30,20,0.1);
+}
+.FootHeader{
+    position: absolute;
+    bottom: 0;
+    height: 80px;
+    background-color: rgba(10,50,100,0.2);
+    width: 100%;
+}
+.GuideBox{
+    height: 350px;
+}
+.GuideBox video{
+    width: 65%;
+    margin-left: 5%;
+}
+.Guide{
+    margin: 0;
+    padding: 0;
+    margin-left: 5%;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 10pt;
+    color:brown;
+}
+.MainHeader h2{
+    cursor: pointer;
 }
 .LogoBox{
+    font-family: 'intelone-mono-font-family-regular';
     width: 100%;
     height: 50px;
 }
 .Logo{
+    cursor: pointer;
+    color:slateblue;
     font-size: 30px;
     margin-left: 5%;
 }
@@ -33,16 +83,51 @@
     
 
 }
+.date{
+    font-family: 'intelone-mono-font-family-regular';
+
+}
 
 .NextBtn{
     position: absolute;
-    right: 0;
+    right: 0px;
+    background-color: rgba(0,0,0,0);
+    border: 0px solid #000;
     top: 45%;
+}
+.NextBtn img{
+    position: relative;
+    background-color: rgba(0,0,0,0);
+    width: 15%;
+    margin: 0;
+    left: 4%;
+    padding: 0;
+    float: right;
+    /* 이미지를 좌우로 반전 */
+    transform: scaleX(-1);
+  
+}
+.PrevBtn img{
+    position: relative;
+
+    right: 4%;
+    background-color: rgba(0,0,0,0);
+    width: 15%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    float: left;
 }
 .PrevBtn{
     position: absolute;
     left: 0;
+    font-weight: bold;
+
     top: 45%;
+    border: 0px solid #000;
+
+    background-color: rgba(0,0,0,0);
+
 
 
 }
@@ -56,4 +141,50 @@
 .neighborhood{
     margin: 0;
     padding: 0;
+    margin-left: 5%;
+    font-family: 'SKYBORI';
+
 }
+
+.MainHeader h2{
+    padding: 0;
+    margin : 3% 0 0 5%;
+}
+
+
+
+.pjName{
+    color:gray;
+}
+.FootHeader p{
+}
+.FP{
+    color:white;
+    margin: 0;
+    padding: 0;
+    margin-left: 24%;
+    font-size: 13px;
+}
+.StratDate{
+    margin: 0;
+    padding: 0;
+    color:white;
+    margin-left: 28%;
+    font-size: 13px;
+
+}
+.FPB{
+    margin-top: 15px;
+}
+.Git{
+    margin: 5px 0 0 0;
+    padding: 0;
+    color: black; /* 기본 링크 텍스트 색상 */
+
+    font-size: 10px;
+    margin-left: 22%;
+    text-decoration: none; /* 밑줄 제거 */
+
+}
+
+

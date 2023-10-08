@@ -9,18 +9,23 @@
         },
         {
             "date": "2023-09-29",
-            "neighborhood": "성수동",
-            "imagePath": "img/Seoul/2.png",
-            "imagePath2": "img/Seoul/2.jpg"
+            "neighborhood": "성수동  cafe roop",
+            "imagePath": "img/Seoul/3.jpg",
+            "imagePath2": "img/Seoul/4.jpg"
           }
     ]   ,
 
     "Busan": [
       {
-        "neighborhood": "성수동",
-        "imagePath":"img/Seoul/1.png", 
-        "imagePath2":"img/Seoul/2.png"
-     }
+        "neighborhood": "해운대",
+        "imagePath2":"img/Busan/2.jpg", 
+        "imagePath":"img/Busan/1jpg.jpg"
+      },
+      {
+      "neighborhood": "성수동",
+      "imagePath":"img/Seoul/1.png", 
+      "imagePath2":"img/Seoul/2.png"
+      }
     ]
 }
   

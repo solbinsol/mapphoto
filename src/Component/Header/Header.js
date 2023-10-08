@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from 'next/router';
 
 
-const Header = ({ imageFiles,onAreaClick,CCG  }) => {
+const Header = ({ imageFiles,onAreaClick,CCG,CCGS,CCGJ}) => {
   const router = useRouter();
   const [seoulClicked, setSeoulClicked] = useState(false); // State to track if "서울" is clicked
 
@@ -85,8 +85,11 @@ const seoulTextRef = useRef(null);
 const handleLogoClick = () => {
   router.reload(); // 현재 페이지를 다시 로드하여 새로고침합니다.
 };
+const [isGuideVisible, setIsGuideVisible] = useState(false); // 가이드 비디오의 가시성 상태를 관리
 
-
+const toggleGuideVisibility = () => {
+  setIsGuideVisible(!isGuideVisible);
+};
 
   return (
     <div className={style.Header}>
@@ -95,11 +98,30 @@ const handleLogoClick = () => {
           Map Photo
         </h1>      </div>
       {!imagesLoaded && (
-        <div className={style.MainHeader}>
-          <h1 >
-            서울
-          </h1>
-          <h1 onClick={CCG}>부산</h1>
+        <div>
+          <div className={style.MainHeader}>
+            <h2 onClick={CCGS}>Seoul</h2>
+            <h2 onClick={CCG}>Busan</h2>
+            <h2 onClick={CCGJ}>Jeju</h2>
+            <div className={style.GuideBox}>
+              {/* 가이드 비디오의 가시성을 상태에 따라 표시 */}
+              {isGuideVisible && (
+                <video width="640" height="360"  controls autoPlay>
+                  <source src="/Guid.mp4" type="video/mp4" />
+                </video>
+              )}
+              <p className={style.Guide}  onClick={toggleGuideVisibility}>Guide</p>
+            </div>
+          </div>
+
+          <div className={style.FootHeader}>
+            
+            <div className={style.FPB}>
+              <p className={style.FP}>solbin project <span className={style.pjName}>MAP Photo</span> </p>
+              <p className={style.StratDate}>2023-10-4 ~ ing </p>
+              <Link href="https://github.com/solbinsol/mapphoto"><p className={style.Git}>https://github.com/solbinsol/mapphoto</p></Link>
+            </div>
+          </div>
         </div>
       )}
       {imageFiles.map((item, index) => (
@@ -108,18 +130,7 @@ const handleLogoClick = () => {
           {item.date && <p className={style.date}> {item.date}</p>}
 
           <div>
-            <button
-              className={style.PrevBtn}
-              onClick={() => handlePrevClick(index)}
-            >
-              이전
-            </button>
-            <button
-              className={style.NextBtn}
-              onClick={() => handleNextClick(index)}
-            >
-              다음
-            </button>
+
             <img
               src={
                 currentImageIndices[index] === index
@@ -128,6 +139,18 @@ const handleLogoClick = () => {
               }
               alt={`Header Image ${index}`}
             />
+                        <button
+              className={style.PrevBtn}
+              onClick={() => handlePrevClick(index)}
+            >
+              <img  src="img/lb.png"/>
+            </button>
+            <button
+              className={style.NextBtn}
+              onClick={() => handleNextClick(index)}
+            >
+              <img  src="img/lb.png"/>
+            </button>
             {item.neighborhood && <p className={style.neighborhood}> {item.neighborhood}</p>}
           </div>
         </div>
