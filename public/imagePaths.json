@@ -17,15 +17,17 @@
 
     "Busan": [
       {
+        "date": "2023-02-22",
         "neighborhood": "해운대",
         "imagePath2":"img/Busan/2.jpg", 
         "imagePath":"img/Busan/1jpg.jpg"
       },
       {
+        "date": "2023-02-20",
       "neighborhood": "성수동",
-      "imagePath":"img/Seoul/1.png", 
-      "imagePath2":"img/Seoul/2.png"
-      }
+      "imagePath2":"img/Busan/4.jpg", 
+      "imagePath":"img/Busan/3.jpg"
+    }
     ]
 }
   
