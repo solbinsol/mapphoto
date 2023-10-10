@@ -1,8 +1,19 @@
 
 
-@media screen and (max-width:1000px) {
+@media screen and (max-width:1000px) and (min-width:471px) {
     .Map{
         width: 60% !important;
+    }    
+}
+@media screen and (max-width:470px) and (min-width:100px) {
+    .Map{
+        width: 55% !important;
+        border-collapse: collapse;
+
+    }
+    .LeftHeader{
+        border-collapse: collapse;
+        width: 45% !important;
     }    
 }
 .Map{
@@ -12,6 +23,8 @@
     top: 0;
     margin: 0;
     padding: 0;
+    border-collapse: collapse;
+
     right: 0;
     width: 70%;
     height: 100vh;
@@ -22,6 +35,8 @@
     top: 0;
     margin: 0;
     padding: 0;
+    border: 5px solid black; /* 내부에 빨간색 보더를 추가합니다. */
+
     left:0;
     height: 100vh;
 }

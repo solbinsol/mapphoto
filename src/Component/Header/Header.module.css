@@ -18,9 +18,23 @@
         width: 80% !important;
     }
 }
+
+@media screen and (max-width:470px) and (min-width:100px) {
+    .Header{
+        float: left !important;
+    }
+    .ImgBox{
+        margin-left:3% !important;
+    }
+}
+
+
 @media screen and (max-width:461px) and (min-width:390px){
     .Logo{
         font-size: 25px !important;
+    }
+    .LogoBox{
+        margin-bottom: 15px !important;
     }
 }
 @media screen and (max-width:389px){
@@ -45,12 +59,15 @@
 }
 .Header{
     width: 100%;
+    border-collapse: collapse;
+
     height: 100vh;
     float: left;
-    border: 5px solid black; /* 내부에 빨간색 보더를 추가합니다. */
     box-sizing: border-box; /* 요소의 크기에 보더를 포함시킵니다. */
     overflow: auto;
     background-color: rgba(10,30,20,0.1);
+    border-collapse: collapse;
+
 }
 .FootHeader{
     position: absolute;
