@@ -357,7 +357,7 @@ const handleAreaClick = (areaName) => {
 
   return (
     <>
-      <div>
+      <div className={style.MMM}>
         <div className={style.LeftHeader}>
           {/* 이미지 파일 목록을 헤더 컴포넌트로 전달 */}
           <Header imageFiles={imageFiles} selectedArea={selectedArea}  onAreaClick={handleAreaClick} CCG={CCG}

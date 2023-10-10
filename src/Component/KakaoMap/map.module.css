@@ -3,7 +3,10 @@
 @media screen and (max-width:1000px) and (min-width:471px) {
     .Map{
         width: 60% !important;
-    }    
+    }   
+    .LeftHeader{
+        width: 40% !important;
+    } 
 }
 @media screen and (max-width:470px) and (min-width:100px) {
     .Map{
@@ -30,7 +33,7 @@
     height: 100vh;
 }
 .LeftHeader{
-    width: 40%;
+    width: 30%;
     position: absolute;
     top: 0;
     margin: 0;
@@ -38,7 +41,10 @@
     border: 5px solid black; /* 내부에 빨간색 보더를 추가합니다. */
 
     left:0;
-    height: 100vh;
+    height: 99vh;
+}
+.MMM
+{
 }
 
 .BBB{float: left;
